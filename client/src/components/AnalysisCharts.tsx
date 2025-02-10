@@ -44,6 +44,7 @@ export function AnalysisCharts({ data }: AnalysisChartsProps) {
                   borderRadius: "var(--radius)",
                 }}
                 labelStyle={{ color: "hsl(var(--foreground))" }}
+                itemStyle={{ color: "hsl(var(--foreground))" }}
               />
               <Bar dataKey="posts" fill="hsl(217.2, 91.2%, 59.8%)" />
             </BarChart>
@@ -82,6 +83,7 @@ export function AnalysisCharts({ data }: AnalysisChartsProps) {
                   borderRadius: "var(--radius)",
                 }}
                 labelStyle={{ color: "hsl(var(--foreground))" }}
+                itemStyle={{ color: "hsl(var(--foreground))" }}
               />
             </PieChart>
           </ResponsiveContainer>
