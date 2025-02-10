@@ -5,11 +5,16 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { mockAnalyzeAccount } from "@/lib/mockData";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface BotAnalysisProps {
   handle: string;
 }
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
 
 export function BotAnalysis({ handle }: BotAnalysisProps) {
   const [loading, setLoading] = useState(true);
@@ -37,13 +42,18 @@ export function BotAnalysis({ handle }: BotAnalysisProps) {
 
   if (loading) {
     return (
-      <div className="space-y-4">
-        <Skeleton className="h-[200px] w-full" />
+      <motion.div 
+        className="space-y-4"
+        initial="hidden"
+        animate="show"
+        variants={fadeIn}
+      >
+        <Skeleton className="h-[200px] w-full bg-card/50" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Skeleton className="h-[300px]" />
-          <Skeleton className="h-[300px]" />
+          <Skeleton className="h-[300px] bg-card/50" />
+          <Skeleton className="h-[300px] bg-card/50" />
         </div>
-      </div>
+      </motion.div>
     );
   }
 
@@ -55,38 +65,62 @@ export function BotAnalysis({ handle }: BotAnalysisProps) {
       : "text-red-500";
 
   return (
-    <div className="space-y-4">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span>Analysis Results for @{handle}</span>
-            <span className={`text-2xl font-bold ${scoreColor}`}>
-              {data.botScore}% Bot Likelihood
-            </span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Progress
-            value={data.botScore}
-            className={`h-2 ${
-              data.botScore < 30
-                ? "bg-green-100"
-                : data.botScore < 70
-                ? "bg-yellow-100"
-                : "bg-red-100"
-            }`}
-          />
-          <div className="mt-4 text-muted-foreground">{data.summary}</div>
-        </CardContent>
-      </Card>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
+    <AnimatePresence mode="wait">
+      <motion.div 
+        className="space-y-4"
+        variants={fadeIn}
+        initial="hidden"
+        animate="show"
       >
+        <Card className="backdrop-blur-sm bg-card/50">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+              >
+                Analysis Results for @{handle}
+              </motion.span>
+              <motion.span
+                className={`text-2xl font-bold ${scoreColor}`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                {data.botScore}% Bot Likelihood
+              </motion.span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Progress
+                value={data.botScore}
+                className={`h-2 ${
+                  data.botScore < 30
+                    ? "bg-green-100/20"
+                    : data.botScore < 70
+                    ? "bg-yellow-100/20"
+                    : "bg-red-100/20"
+                }`}
+              />
+            </motion.div>
+            <motion.div 
+              className="mt-4 text-muted-foreground"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              {data.summary}
+            </motion.div>
+          </CardContent>
+        </Card>
+
         <AnalysisCharts data={data} />
       </motion.div>
-    </div>
+    </AnimatePresence>
   );
 }

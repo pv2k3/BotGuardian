@@ -11,34 +11,47 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import { motion } from "framer-motion";
 
 interface AnalysisChartsProps {
   data: any;
 }
 
-const COLORS = ["#22c55e", "#eab308", "#ef4444"];
+const COLORS = ["#22c55e", "#facc15", "#ef4444"];
 
 export function AnalysisCharts({ data }: AnalysisChartsProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <Card>
+    <motion.div 
+      className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4 }}
+    >
+      <Card className="backdrop-blur-sm bg-card/50">
         <CardHeader>
           <CardTitle>Posting Frequency</CardTitle>
         </CardHeader>
         <CardContent className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data.postingFrequency}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="time" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="posts" fill="#3b82f6" />
+              <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+              <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
+              <YAxis stroke="hsl(var(--muted-foreground))" />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "hsl(var(--card))",
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "var(--radius)",
+                }}
+                labelStyle={{ color: "hsl(var(--foreground))" }}
+              />
+              <Bar dataKey="posts" fill="hsl(217.2, 91.2%, 59.8%)" />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="backdrop-blur-sm bg-card/50">
         <CardHeader>
           <CardTitle>Engagement Breakdown</CardTitle>
         </CardHeader>
@@ -53,6 +66,7 @@ export function AnalysisCharts({ data }: AnalysisChartsProps) {
                 cy="50%"
                 outerRadius={80}
                 label
+                labelLine={{ stroke: "hsl(var(--muted-foreground))" }}
               >
                 {data.engagement.map((_: any, index: number) => (
                   <Cell
@@ -61,11 +75,18 @@ export function AnalysisCharts({ data }: AnalysisChartsProps) {
                   />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "hsl(var(--card))",
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "var(--radius)",
+                }}
+                labelStyle={{ color: "hsl(var(--foreground))" }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
-    </div>
+    </motion.div>
   );
 }
