@@ -44,7 +44,7 @@ export default function Home() {
         </motion.p>
 
         <motion.div variants={item}>
-          <Card className="backdrop-blur-sm bg-card/50">
+          <Card className="backdrop-blur-sm bg-card/50 transition-all duration-300 hover:bg-card/70 hover:shadow-lg hover:scale-[1.01]">
             <CardContent className="pt-6">
               <TwitterForm onSubmit={setSelectedHandle} />
             </CardContent>

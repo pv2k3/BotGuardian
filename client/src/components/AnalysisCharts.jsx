@@ -16,6 +16,17 @@ import { motion } from "framer-motion";
 const COLORS = ["#22c55e", "#facc15", "#ef4444"];
 
 export function AnalysisCharts({ data }) {
+  const tooltipStyle = {
+    backgroundColor: "hsl(var(--card))",
+    border: "1px solid hsl(var(--border))",
+    borderRadius: "var(--radius)",
+    color: "white",
+  };
+
+  const labelStyle = {
+    color: "white",
+  };
+
   return (
     <motion.div 
       className="grid grid-cols-1 md:grid-cols-2 gap-4"
@@ -23,7 +34,7 @@ export function AnalysisCharts({ data }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
     >
-      <Card className="backdrop-blur-sm bg-card/50">
+      <Card className="backdrop-blur-sm bg-card/50 transition-all duration-300 hover:bg-card/70 hover:shadow-lg hover:scale-[1.01]">
         <CardHeader>
           <CardTitle>Posting Frequency</CardTitle>
         </CardHeader>
@@ -34,21 +45,21 @@ export function AnalysisCharts({ data }) {
               <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" />
               <YAxis stroke="hsl(var(--muted-foreground))" />
               <Tooltip
-                contentStyle={{
-                  backgroundColor: "hsl(var(--card))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "var(--radius)",
-                }}
-                labelStyle={{ color: "hsl(var(--foreground))" }}
-                itemStyle={{ color: "hsl(var(--foreground))" }}
+                contentStyle={tooltipStyle}
+                labelStyle={labelStyle}
+                itemStyle={labelStyle}
               />
-              <Bar dataKey="posts" fill="hsl(217.2, 91.2%, 59.8%)" />
+              <Bar 
+                dataKey="posts" 
+                fill="hsl(217.2, 91.2%, 59.8%)"
+                className="transition-opacity duration-200 hover:opacity-80"
+              />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
 
-      <Card className="backdrop-blur-sm bg-card/50">
+      <Card className="backdrop-blur-sm bg-card/50 transition-all duration-300 hover:bg-card/70 hover:shadow-lg hover:scale-[1.01]">
         <CardHeader>
           <CardTitle>Engagement Breakdown</CardTitle>
         </CardHeader>
@@ -69,17 +80,14 @@ export function AnalysisCharts({ data }) {
                   <Cell
                     key={`cell-${index}`}
                     fill={COLORS[index % COLORS.length]}
+                    className="transition-opacity duration-200 hover:opacity-80"
                   />
                 ))}
               </Pie>
               <Tooltip
-                contentStyle={{
-                  backgroundColor: "hsl(var(--card))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "var(--radius)",
-                }}
-                labelStyle={{ color: "hsl(var(--foreground))" }}
-                itemStyle={{ color: "hsl(var(--foreground))" }}
+                contentStyle={tooltipStyle}
+                labelStyle={labelStyle}
+                itemStyle={labelStyle}
               />
             </PieChart>
           </ResponsiveContainer>
