@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { AnalysisCharts } from "./AnalysisCharts";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
@@ -118,8 +117,6 @@ export function BotAnalysis({ handle }: BotAnalysisProps) {
             </motion.div>
           </CardContent>
         </Card>
-
-        <AnalysisCharts data={data} />
       </motion.div>
     </AnimatePresence>
   );

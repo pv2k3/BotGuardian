@@ -5,15 +5,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { Navbar } from "@/components/Navbar";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
-import Dashboard from "@/pages/dashboard";
+import Project from "@/pages/aboutProject";
 import Account from "@/pages/account";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/account" component={Account} />
+      <Route path="/aboutProject" component={Project} />
+      <Route path="/aboutTeam" component={Account} />
       <Route component={NotFound} />
     </Switch>
   );
