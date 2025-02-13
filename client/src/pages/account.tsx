@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Imag from '../../profile/profiletest.png';
+// import Imag from '../../profile/profiletest.png';
 import ImgPriyanshu from '../../profile/priyanshu.jpg';
 import ImgDhaval from '../../profile/dhaval.jpeg';
-// import ImgHarsh from '../../profile/priyanshu.jpg';
+import ImgHarsh from '../../profile/harsh.jpeg';
 import ImgArnav from '../../profile/arnav.jpg';
 import ImgShreyansh from '../../profile/shreyansh.jpg';
 
@@ -28,7 +28,7 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://linkedin.com/in/priyanshu-verma-2k3",
   },  
   {
-    name: 'Harsh Awasthi', role: 'Backend Developer', image: Imag,
+    name: 'Harsh Awasthi', role: 'Backend Developer', image: ImgHarsh,
     linkedin: "https://www.linkedin.com/in/harsh-awasthi-831a9b27b",
   },
   {
