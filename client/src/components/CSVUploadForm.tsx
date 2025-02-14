@@ -13,25 +13,25 @@ interface AnalysisResult {
 }
 
 
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative h-4 w-full overflow-hidden rounded-full bg-gray-700',
-      className
-    )}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-blue-500 transition-all"
-      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-    />
-  </ProgressPrimitive.Root>
-));
-Progress.displayName = ProgressPrimitive.Root.displayName;
+// const Progress = React.forwardRef<
+//   React.ElementRef<typeof ProgressPrimitive.Root>,
+//   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
+// >(({ className, value, ...props }, ref) => (
+//   <ProgressPrimitive.Root
+//     ref={ref}
+//     className={cn(
+//       'relative h-4 w-full overflow-hidden rounded-full bg-gray-700',
+//       className
+//     )}
+//     {...props}
+//   >
+//     <ProgressPrimitive.Indicator
+//       className="h-full w-full flex-1 bg-blue-500 transition-all"
+//       style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+//     />
+//   </ProgressPrimitive.Root>
+// ));
+// Progress.displayName = ProgressPrimitive.Root.displayName;
 
 export const CSVUploadForm: React.FC<CSVUploadFormProps> = ({ onSubmit }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -62,7 +62,6 @@ export const CSVUploadForm: React.FC<CSVUploadFormProps> = ({ onSubmit }) => {
         });
         if (response.ok) {
           const result = await response.json();
-          console.log('File uploaded successfully:', result);
           setAnalysisResult(result.results); // Assuming the result contains an array of objects with 'username' and 'score' fields
           onSubmit(selectedFile);
         } else {

@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { BotAnalysis } from "@/components/BotAnalysis";
+// import { BotAnalysis } from "@/components/BotAnalysis";
 import { TwitterForm } from "@/components/TwitterForm";
 import { CSVUploadForm } from "@/components/CSVUploadForm";
 import { useState } from "react";
@@ -111,7 +111,7 @@ export default function Home() {
           </motion.div>
         )}
 
-        {selectedHandle && (
+        {/* {selectedHandle && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ export default function Home() {
           >
             <BotAnalysis handle={selectedHandle} />
           </motion.div>
-        )}
+        )} */}
 
         {uploadedFile && (
           <motion.div
