@@ -15,6 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Loader } from "@/components/ui/Loader";
 import { motion } from "framer-motion";
 
+const API_URL = process.env.REACT_APP_API_URL as string;
+
 const formSchema = z.object({
   handle: z
     .string()
@@ -56,7 +58,7 @@ export function TwitterForm({ onSubmit }: TwitterFormProps) {
       const formData = new FormData();
       formData.append("username", values.handle);
 
-      const response = await fetch("http://localhost:8000/predict-user/", {
+      const response = await fetch(`http://${API_URL}/predict-user/`, {
         method: "POST",
         body: formData, // Send form-data instead of JSON
       });

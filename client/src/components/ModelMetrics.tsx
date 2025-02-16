@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Import framer-motion
 
+const API_URL = process.env.REACT_APP_API_URL as string;
+
+
 // Define TypeScript interface for API response
 interface ClassificationScores {
   precision: number;
@@ -22,7 +25,7 @@ export default function ModelMetrics() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/metrics") // Update with actual backend URL
+    fetch(`http://${API_URL}/metrics`) // Update with actual backend URL
       .then((res) => res.json())
       .then((data: ModelMetricsResponse) => {
         setData(data);
