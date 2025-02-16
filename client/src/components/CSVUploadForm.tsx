@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 import { cn } from '@/lib/utils';
 
-const API_URL = process.env.REACT_APP_API_URL as string;
+// const API_URL = import.meta.env.VITE_API_URL;
 
 interface CSVUploadFormProps {
   onSubmit: (file: File) => void;
@@ -38,7 +38,7 @@ export const CSVUploadForm: React.FC<CSVUploadFormProps> = ({ onSubmit }) => {
       setAnalysisResult([]); // Reset to an empty array
 
       try {
-        const response = await fetch(`http://${API_URL}/predict-csv/`, {
+        const response = await fetch(`http://localhsot:8000/predict-csv/`, {
           method: 'POST',
           body: formData,
         });

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // Import framer-motion
 
-const API_URL = process.env.REACT_APP_API_URL as string;
+// const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 // Define TypeScript interface for API response
@@ -25,7 +26,7 @@ export default function ModelMetrics() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`http://${API_URL}/metrics`) // Update with actual backend URL
+    fetch(`http://localhost:8000/metrics`) // Update with actual backend URL
       .then((res) => res.json())
       .then((data: ModelMetricsResponse) => {
         setData(data);
@@ -85,7 +86,7 @@ export default function ModelMetrics() {
                   transition={{ duration: 0.5 }}
                 >
                   <td className="p-2 border border-gray-600 text-center">{label}</td>
-                  <td className="p-2 border border-gray-600 text-center">{scores.precision.toFixed(4)}</td>
+                  <td className="p-2 border border-gray-600 text-center">{scores.precision?.toFixed(4) ?? "N/A"}</td>
                   <td className="p-2 border border-gray-600 text-center">{scores.recall.toFixed(4)}</td>
                   <td className="p-2 border border-gray-600 text-center">{scores["f1-score"].toFixed(4)}</td>
                   <td className="p-2 border border-gray-600 text-center">{scores.support}</td>
