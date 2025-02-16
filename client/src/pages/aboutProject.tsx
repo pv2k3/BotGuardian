@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import ModelMetrics from "@/components/ModelMetrics";
 
 export default function AboutProject() {
   return (
@@ -74,6 +75,7 @@ export default function AboutProject() {
           </div>
         </section>
       </motion.div>
+      <ModelMetrics />
     </div>
   );
 }

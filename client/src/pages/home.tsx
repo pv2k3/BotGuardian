@@ -104,7 +104,7 @@ export default function Home() {
         {selectedForm === 'csv' && (
           <motion.div variants={item} className="mt-8">
             <Card className="backdrop-blur-sm bg-card/50">
-              <p className="text-md font-bold text-cyan-700 px-6 py-s">Note: CSV File Format {"[username, default_profile, favourites_count, followers_count, friends_count, geo_enabled, statuses_count, verified, average_tweets_per_day, account_age_day]"}</p>
+              <p className="text-md font-bold text-cyan-700 px-6 py-2">Note: Selected file should be in following format {"{id, default_profile, favourites_count, followers_count, friends_count, geo_enabled, statuses_count, verified, average_tweets_per_day, account_age_days}"} </p>
               <CardContent className="pt-6">
                 <CSVUploadForm onSubmit={setUploadedFile} />
               </CardContent>
