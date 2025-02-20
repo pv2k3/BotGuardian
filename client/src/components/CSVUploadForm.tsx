@@ -38,7 +38,7 @@ export const CSVUploadForm: React.FC<CSVUploadFormProps> = ({ onSubmit }) => {
       setAnalysisResult([]); // Reset to an empty array
 
       try {
-        const response = await fetch(`http://localhsot:8000/predict-csv/`, {
+        const response = await fetch(`https://botguardian-backend.onrender.com/predict-csv/`, {
           method: 'POST',
           body: formData,
         });
