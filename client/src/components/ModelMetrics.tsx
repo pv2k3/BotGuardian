@@ -3,8 +3,6 @@ import { motion } from "framer-motion"; // Import framer-motion
 
 // const API_URL = import.meta.env.VITE_API_URL;
 
-
-
 // Define TypeScript interface for API response
 interface ClassificationScores {
   precision: number;
@@ -26,16 +24,20 @@ export default function ModelMetrics() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/metrics`) // Update with actual backend URL
-      .then((res) => res.json())
-      .then((data: ModelMetricsResponse) => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
+    const mockData: ModelMetricsResponse = {
+      accuracy: 0.88,
+      roc_auc: 0.9354291080524054,
+      classification_report: {
+        "0": { precision: 0.88, recall: 0.95, "f1-score": 0.91, support: 4974 },
+        "1": { precision: 0.88, recall: 0.75, "f1-score": 0.81, support: 2514 },
+        accuracy: 0.88,
+        "macro avg": { precision: 0.88, recall: 0.85, "f1-score": 0.86, support: 7488 },
+        "weighted avg": { precision: 0.88, recall: 0.88, "f1-score": 0.88, support: 7488 },
+      },
+    };
+
+    setData(mockData);
+    setLoading(false);
   }, []);
 
   if (loading) {
