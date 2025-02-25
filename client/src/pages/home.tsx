@@ -33,17 +33,17 @@ export default function Home() {
         animate="show"
         className="max-w-7xl mx-auto"
       >
-        <motion.h1 
+        <motion.span 
           variants={item}
           className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
         >
           BotGuardian
-        </motion.h1>
+        </motion.span>
         <motion.p 
           variants={item}
           className="text-muted-foreground mb-8"
         >
-          Analyze Twitter accounts to detect automated behavior and bot patterns
+          Analyze twitter accounts to detect automated behavior and bot patterns.
         </motion.p>
 
         <motion.div variants={item} className="mb-8">
